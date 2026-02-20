@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../menu/menu_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
-  const ExploreScreen({Key? key}) : super(key: key);
+  const ExploreScreen({super.key});
 
   @override
   State<ExploreScreen> createState() => _ExploreScreenState();
@@ -10,6 +11,7 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   final PageController _pageController = PageController();
+  int _currentPage = 0;
 
   final List<String> images = [
     "assets/food1.png",
@@ -21,70 +23,107 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🔹 NAVBAR
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              color: Colors.black,
+            /// NAVBAR
+            Padding(
+              padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // LOGO
-                  Image.asset("assets/logo.png", height: 40),
-
-                  // NAV LINKS
-                  Row(
-                    children: [
-                      navItem("Menu", () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => const MenuScreen()),
-                        );
-                      }),
-                      const SizedBox(width: 20),
-                      navItem("About Us", () {
-                        scrollToSection(1);
-                      }),
-                      const SizedBox(width: 20),
-                      navItem("Venue", () {
-                        scrollToSection(2);
-                      }),
-                    ],
+                  Image.asset("assets/images/logo.png", height: 32),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const MenuScreen()),
+                      );
+                    },
+                    child: Text(
+                      "Menu",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                      ),
+                    ),
                   ),
                 ],
-              ),
-            ),
-
-            // 🔹 CAROUSEL
-            SizedBox(
-              height: 250,
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: images.length,
-                itemBuilder: (context, index) {
-                  return Image.asset(images[index], fit: BoxFit.cover);
-                },
               ),
             ),
 
             const SizedBox(height: 30),
 
-            // 🔹 ABOUT SECTION
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+            /// MANUAL CAROUSEL
+            SizedBox(
+              height: 240,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: images.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(images[index], fit: BoxFit.cover),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            /// PAGE INDICATOR
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(images.length, (index) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  height: 8,
+                  width: _currentPage == index ? 18 : 8,
+                  decoration: BoxDecoration(
+                    color: _currentPage == index
+                        ? Colors.black
+                        : Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                );
+              }),
+            ),
+
+            const SizedBox(height: 50),
+
+            /// ABOUT SECTION
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "About The Slate",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    "Welcome to The Slate",
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 15),
                   Text(
-                    "The Slate Restaurant offers a premium dining experience "
-                    "with elegant ambiance and carefully curated dishes.",
-                    textAlign: TextAlign.center,
+                    "A modern dining experience crafted with elegance and passion. "
+                    "We serve carefully curated dishes in a calm, stylish atmosphere.",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      height: 1.6,
+                      color: Colors.black87,
+                    ),
                   ),
                 ],
               ),
@@ -92,56 +131,62 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
             const SizedBox(height: 40),
 
-            // 🔹 VENUE SECTION
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  Text(
-                    "Our Venue",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            /// VIEW MENU BUTTON
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 50,
+                    vertical: 16,
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Located in the heart of the city, The Slate provides "
-                    "a luxurious and cozy environment for every occasion.",
-                    textAlign: TextAlign.center,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                ],
+                  elevation: 0,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const MenuScreen()),
+                  );
+                },
+                child: Text(
+                  "View Menu",
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    letterSpacing: 1,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 60),
 
-            // 🔹 FOOTER
+            /// FOOTER
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(30),
-              color: Colors.black,
-              child: const Column(
+              padding: const EdgeInsets.symmetric(vertical: 30),
+              color: Colors.grey[100],
+              child: Column(
                 children: [
                   Text(
                     "The Slate Restaurant",
-                    style: TextStyle(
-                      color: Colors.white,
+                    style: GoogleFonts.playfairDisplay(
+                      fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
-                    "Open Daily | 10AM - 10PM",
-                    style: TextStyle(color: Colors.white70),
+                    "Open Daily 10AM – 10PM",
+                    style: GoogleFonts.poppins(color: Colors.black54),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
-                    "Contact: +94 77 123 4567",
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "© 2026 The Slate Restaurant",
-                    style: TextStyle(color: Colors.white54),
+                    "+94 77 123 4567",
+                    style: GoogleFonts.poppins(color: Colors.black54),
                   ),
                 ],
               ),
@@ -150,19 +195,5 @@ class _ExploreScreenState extends State<ExploreScreen> {
         ),
       ),
     );
-  }
-
-  Widget navItem(String text, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white, fontSize: 16),
-      ),
-    );
-  }
-
-  void scrollToSection(int index) {
-    // simple scroll logic (can improve later)
   }
 }

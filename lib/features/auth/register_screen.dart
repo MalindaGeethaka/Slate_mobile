@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
 
               DropdownButtonFormField<String>(
-                value: gender.isEmpty ? null : gender,
+                initialValue: gender.isEmpty ? null : gender,
                 items: const [
                   DropdownMenuItem(value: "Male", child: Text("Male")),
                   DropdownMenuItem(value: "Female", child: Text("Female")),
