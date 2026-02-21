@@ -76,7 +76,7 @@ class CartScreen extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.remove),
                                   onPressed: () {
-                                    cart.decreaseQuantity(item['id']);
+                                    cart.decreaseQuantity(item['_id']);
                                   },
                                 ),
                                 Text(
@@ -88,7 +88,7 @@ class CartScreen extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.add),
                                   onPressed: () {
-                                    cart.increaseQuantity(item['id']);
+                                    cart.increaseQuantity(item['_id']);
                                   },
                                 ),
                               ],

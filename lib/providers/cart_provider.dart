@@ -14,7 +14,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void addToCart(Map<String, dynamic> product) {
-    int index = _items.indexWhere((item) => item['id'] == product['id']);
+    int index = _items.indexWhere((item) => item['_id'] == product['_id']);
 
     if (index >= 0) {
       _items[index]['quantity'] += 1;
@@ -26,7 +26,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void increaseQuantity(String id) {
-    int index = _items.indexWhere((item) => item['id'] == id);
+    int index = _items.indexWhere((item) => item['_id'] == id);
     if (index >= 0) {
       _items[index]['quantity'] += 1;
       notifyListeners();
@@ -34,7 +34,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void decreaseQuantity(String id) {
-    int index = _items.indexWhere((item) => item['id'] == id);
+    int index = _items.indexWhere((item) => item['_id'] == id);
     if (index >= 0) {
       if (_items[index]['quantity'] > 1) {
         _items[index]['quantity'] -= 1;
@@ -46,12 +46,7 @@ class CartProvider with ChangeNotifier {
   }
 
   void removeItem(String id) {
-    _items.removeWhere((item) => item['id'] == id);
-    notifyListeners();
-  }
-
-  void clearCart() {
-    _items.clear();
+    _items.removeWhere((item) => item['_id'] == id);
     notifyListeners();
   }
 }

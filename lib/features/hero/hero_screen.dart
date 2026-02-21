@@ -22,9 +22,9 @@ class HeroPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Welcome to Slate',
+              'The Slate',
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 38,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),

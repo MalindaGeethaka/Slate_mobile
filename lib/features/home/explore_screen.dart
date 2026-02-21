@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../menu/menu_screen.dart';
+import './aboutUs_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -34,7 +35,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset("assets/images/logo.png", height: 32),
+                  Image.asset("assets/logo.png", height: 32),
                   TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -44,6 +45,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     },
                     child: Text(
                       "Menu",
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const AboutScreen()),
+                      );
+                    },
+                    child: Text(
+                      "About Us",
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
@@ -180,12 +198,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "Open Daily 10AM – 10PM",
+                    "Open Daily 10AM – 10PM/n 123, Main Street, Colombo",
                     style: GoogleFonts.poppins(color: Colors.black54),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    "+94 77 123 4567",
+                    "+94 78 352 0714",
                     style: GoogleFonts.poppins(color: Colors.black54),
                   ),
                 ],
