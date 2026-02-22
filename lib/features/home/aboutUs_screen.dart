@@ -39,7 +39,6 @@ class AboutScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// LOGO SECTION
             Center(
               child: Column(
                 children: const [
@@ -92,7 +91,6 @@ class AboutScreen extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// SOCIAL MEDIA
             const Center(
               child: Text(
                 "Follow Us",

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../menu/menu_screen.dart';
 import './aboutUs_screen.dart';
+import '../auth/profile_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -36,38 +37,62 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset("assets/logo.png", height: 32),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const MenuScreen()),
-                      );
-                    },
-                    child: Text(
-                      "Menu",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
-                      ),
-                    ),
-                  ),
 
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const AboutScreen()),
-                      );
-                    },
-                    child: Text(
-                      "About Us",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const MenuScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Menu",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
+                        ),
                       ),
-                    ),
+
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const AboutScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "About Us",
+                          style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+
+                      IconButton(
+                        icon: const Icon(
+                          Icons.person_outline,
+                          color: Colors.black87,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const ProfileScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -75,7 +100,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
             const SizedBox(height: 30),
 
-            /// MANUAL CAROUSEL
+            /// CAROUSEL
             SizedBox(
               height: 240,
               child: PageView.builder(
@@ -104,7 +129,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(images.length, (index) {
-                return Container(
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   height: 8,
                   width: _currentPage == index ? 18 : 8,
@@ -198,8 +224,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    "Open Daily 10AM – 10PM/n 123, Main Street, Colombo",
+                    "Open Daily 10AM – 10PM\n123, Main Street, Colombo",
                     style: GoogleFonts.poppins(color: Colors.black54),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 5),
                   Text(
