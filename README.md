@@ -1,16 +1,39 @@
-# slate_mobile
+# Flutter Mobile App – Final Assignment
 
-A new Flutter project.
+## 📱 Description
+This is a full-stack mobile application developed using Flutter and Node.js backend with JWT authentication.
 
-## Getting Started
+## 🚀 Features
+- User Registration
+- Login with JWT Authentication
+- Protected Profile Page
+- Edit Profile
+- Cart System (Provider State Management)
+- Logout Functionality
 
-This project is a starting point for a Flutter application.
+## 🛠 Tech Stack
+Frontend:
+- Flutter
+- Provider
+- SharedPreferences
 
-A few resources to get you started if this is your first Flutter project:
+Backend:
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🔐 Authentication Flow
+- Login generates JWT
+- Token stored in SharedPreferences
+- Token sent via Authorization header
+- Protected routes validated by middleware
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## ▶ How To Run Backend
+1. npm install
+2. npm start
+
+## ▶ How To Run Flutter App
+1. flutter pub get
+2. flutter run
