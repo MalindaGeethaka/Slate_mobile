@@ -23,7 +23,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String gender = "";
   DateTime? selectedDate;
 
-  /// DATE PICKER
   Future<void> _selectDate() async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -221,9 +220,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         value: gender.isEmpty ? null : gender,
                         decoration: customInput("Gender", Icons.person),
                         items: const [
-                          DropdownMenuItem(value: "Male", child: Text("Male")),
+                          DropdownMenuItem(value: "male", child: Text("Male")),
                           DropdownMenuItem(
-                            value: "Female",
+                            value: "female",
                             child: Text("Female"),
                           ),
                         ],
